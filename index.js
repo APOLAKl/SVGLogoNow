@@ -28,7 +28,7 @@ const mainMenu = () => {
         type: "list",
         name: "shapeColor",
         message: "What is the shape color of your logo?",
-        choices: ["red", "violet", "blue", "green", "yellow", "orange", "transparent"],
+        choices: ["red", "violet", "blue", "green", "yellow", "orange"],
       },
       {
         type: "list",
@@ -43,19 +43,20 @@ const mainMenu = () => {
         mainMenu();
       }
 
-       if (answers.shape == "square") {
-        squareShape = `<rect x="10" y="10" width="80%" height="80%" stroke="${answers.border}" fill="${answers.shapeColor}" stroke-width="5" />`;
-      }
+      // if (answers.shape == "square") {
+      //   addSquareLogo();
+      // }
 
-      if (answers.shape == "circle") {
-        circleShape = `<circle cx="25" cy="75" r="20" stroke="${answers.border}" fill="${answers.shapeColor}" stroke-width="5"/>`;
-      }
+      // if (answers.shape == "circle") {
+      //   addCircleLogo();
+      // }
 
-      if (answers.shape == "triangle") {
-        triangleShape = `<polygon points="250,60 100,400 400,400" stroke="${answers.border}" fill="${answers.shapeColor}" stroke-width="5" />`;
-      }
-
+      // if (answers.shape == "triangle") {
+      //   addTriangleLogo();
+      // }
       console.log(answers);
+
+      const squareShape = `<rect x="10" y="10" width="80%" height="80%" stroke="${answers.border()}" fill="${answers.shapeColor()}" stroke-width="5" />`
 
 
       const generateSVG = `
@@ -63,11 +64,9 @@ const mainMenu = () => {
 width="300" height="200"
 xmlns="http://www.w3.org/2000/svg">
     
-${squareShape}
-${circleShape}
-${triangleShape}
+<text x="150" y="125" font-size="60" text-anchor="middle" fill="${answers.textColor()}">${answers.text()}</text>
 
-<text x="150" y="125" font-size="60" text-anchor="middle" fill="${answers.textColor}">${answers.text}</text>
+${squareShape}
 
 </svg>
     `;
