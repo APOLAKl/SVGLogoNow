@@ -83,7 +83,7 @@ const addSquareLogo = () => {
       },
     ])
     .then((answers) => {
-      const newSquareLogo = new SquareLogo(
+      const newShape = new Shape(
         answers.Xaxis,
         answers.Yaxis,
         answers.width,
@@ -93,7 +93,7 @@ const addSquareLogo = () => {
 
 
 
-      selectedShape.push(newSquareLogo);
+      selectedShape.push(newShape);
 
       generateSVG();
 
@@ -115,7 +115,7 @@ xmlns="http://www.w3.org/2000/svg">
       `)
     })
   }
-<text x="150" y="125" font-size="60" text-anchor="middle" fill="white">SVG</text>
+<text x="150" y="125" font-size="60" text-anchor="middle" fill="white">${shape.getText()}</text>
 
 </svg>`
   
