@@ -56,7 +56,7 @@ const mainMenu = () => {
       // }
       console.log(answers);
 
-      const squareShape = `<rect x="10" y="10" width="80%" height="80%" stroke="${answers.getborder()}" fill="${answers.getshapeColor()}" stroke-width="5" />`
+      const squareShape = `<rect x="10" y="10" width="80%" height="80%" stroke="${answers.border()}" fill="${answers.shapeColor()}" stroke-width="5" />`
 
 
       const generateSVG = `
@@ -64,7 +64,7 @@ const mainMenu = () => {
 width="300" height="200"
 xmlns="http://www.w3.org/2000/svg">
     
-<text x="150" y="125" font-size="60" text-anchor="middle" fill="${shape.getTextColor()}">${shape.getText()}</text>
+<text x="150" y="125" font-size="60" text-anchor="middle" fill="${answers.textColor()}">${answers.text()}</text>
 
 ${squareShape}
 
