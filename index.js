@@ -32,7 +32,7 @@ const mainMenu = () => {
       },
       {
         type: "list",
-        name: "shapeBorderColor",
+        name: "border",
         message: "What is the shape border color of your logo?",
         choices: ["red", "violet", "blue", "green", "yellow", "orange"],
       },
@@ -43,88 +43,107 @@ const mainMenu = () => {
         mainMenu();
       }
 
-      if (answers.shape == "square") {
-        addSquareLogo();
-      }
+      // if (answers.shape == "square") {
+      //   addSquareLogo();
+      // }
 
-      if (answers.shape == "circle") {
-        addCircleLogo();
-      }
+      // if (answers.shape == "circle") {
+      //   addCircleLogo();
+      // }
 
-      if (answers.shape == "triangle") {
-        addTriangleLogo();
-      }
-    });
-};
+      // if (answers.shape == "triangle") {
+      //   addTriangleLogo();
+      // }
+      console.log(answers);
 
-const addSquareLogo = () => {
-  inquirer
-    .prompt([
-      {   
-        type: "input",
-        name: "Xaxis",
-        message: "What is the xAxis of the square?",
-      },
-      {
-        type: "input",
-        name: "Yaxis",
-        message: "What is the yAxis of the square?",
-      },
-      {
-        type: "input",
-        name: "width",
-        message: "What is the width of the square?",
-      },
-      {
-        type: "input",
-        name: "height",
-        message: "What is the height of the square?",
-      },
-    ])
-    .then((answers) => {
-      const newShape = new Shape(
-        answers.Xaxis,
-        answers.Yaxis,
-        answers.width,
-        answers.height
-      );
-      console.log(answers)
+      const squareShape = `<rect x="10" y="10" width="80%" height="80%" stroke="${answers.getborder()}" fill="${answers.getshapeColor()}" stroke-width="5" />`
 
 
-      selectedShape.push(newShape);
-
-      generateSVG();
-
-      mainMenu();
-    });
-};
-
-const generateSVG = () => {
-  console.log(selectedShape);
-
-  const template = `<svg version="1.1"
+      const generateSVG = `
+<svg version="1.1"
 width="300" height="200"
 xmlns="http://www.w3.org/2000/svg">
+    
+<text x="150" y="125" font-size="60" text-anchor="middle" fill="${shape.getTextColor()}">${shape.getText()}</text>
 
-  ${
-    selectedShape.map(shape => {
-      return (`
-        <rect x="${answer.Xaxis()}" y="${answer.Yaxis()}" width="${answer.width()}%" height="${answer.height()}%" stroke="${shape.answers.border()}" fill="${shape.answers.fill()}" stroke-width="5" />
-      `)
-    })
-  }
-<text x="150" y="125" font-size="60" text-anchor="middle" fill="${answers.textColor}">${shape.getText()}</text>
+${squareShape}
 
-</svg>`
-  
-  
+</svg>
+    `;
+
+    fs.writeFile("./examples/logo.svg", generateSVG, () => {
+      console.log("SVG created!");
+    });
 
 
-  fs.writeFile("./examples/logo.svg", template, () => {
-    console.log("SVG created!")
-  })
+});
 }
 
 mainMenu();
+
+
+// const addSquareLogo = () => {
+//   inquirer
+//     .prompt([
+//       {   
+//         type: "input",
+//         name: "Xaxis",
+//         message: "What is the xAxis of the square?",
+//       },
+//       {
+//         type: "input",
+//         name: "Yaxis",
+//         message: "What is the yAxis of the square?",
+//       },
+//       {
+//         type: "input",
+//         name: "width",
+//         message: "What is the width of the square?",
+//       },
+//       {
+//         type: "input",
+//         name: "height",
+//         message: "What is the height of the square?",
+//       },
+//     ])
+//     .then((answers) => {
+//       const newShape = new Shape(
+//         answers.Xaxis,
+//         answers.Yaxis,
+//         answers.width,
+//         answers.height
+//       );
+//       console.log(answers)
+
+
+//       selectedShape.push(newShape);
+
+//       generateSVG();
+
+//       mainMenu();
+//     });
+// };
+
+// const generateSVG = () => {
+//   console.log(selectedShape);
+
+//   const template = `
+
+//   ${
+//     selectedShape.map(shape => {
+//       return (`
+//         <rect x="10" y="10" width="80%" height="80%" stroke="${shape.answers.getborder()}" fill="${shape.answers.getfill()}" stroke-width="5" />
+//       `)
+//     })
+//   }
+// `
+  
+  
+
+
+  
+// }
+
+// mainMenu();
 
 {/* <circle cx="150" cy="100" r="80" fill="green" /> */}
