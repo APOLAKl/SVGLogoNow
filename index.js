@@ -5,7 +5,7 @@ const Shape = require("./lib/shapes");
 const selectedShape = [];
 
 const mainMenu = () => {
-  inquirer
+  return inquirer
     .prompt([
       {
         type: "input",
@@ -55,7 +55,6 @@ const mainMenu = () => {
         addTriangleLogo();
       }
     });
-    console.log(answers)
 };
 
 const addSquareLogo = () => {
@@ -92,7 +91,6 @@ const addSquareLogo = () => {
       console.log(answers)
 
 
-
       selectedShape.push(newShape);
 
       generateSVG();
@@ -111,11 +109,11 @@ xmlns="http://www.w3.org/2000/svg">
   ${
     selectedShape.map(shape => {
       return (`
-        <rect x="${shape.getXaxis()}" y="${shape.getYaxis()}" width="${shape.getWidth()}%" height="${shape.getHeight()}%" stroke="${shape.getShapeBorderColor()}" fill="${shape.getShapeColor()}" stroke-width="5" />
+        <rect x="${answer.Xaxis()}" y="${answer.Yaxis()}" width="${answer.width()}%" height="${answer.height()}%" stroke="${shape.answers.border()}" fill="${shape.answers.fill()}" stroke-width="5" />
       `)
     })
   }
-<text x="150" y="125" font-size="60" text-anchor="middle" fill="white">${shape.getText()}</text>
+<text x="150" y="125" font-size="60" text-anchor="middle" fill="${answers.textColor}">${shape.getText()}</text>
 
 </svg>`
   
