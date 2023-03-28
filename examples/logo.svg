@@ -4,12 +4,12 @@ width="300" height="200"
 xmlns="http://www.w3.org/2000/svg">
     
 
-<polygon points="250,60 100,400 400,400" stroke="undefined" fill="undefined" stroke-width="5"/>
+<rect x="30" y="30" width="80%" height="80%" stroke="yellow" fill="blue" stroke-width="5"/>
 
 
 
 
-<text x="150" y="125" font-size="60" text-anchor="middle" fill="white">XXX</text>
+<text x="150" y="125" font-size="60" text-anchor="middle" fill="violet">ZZZ</text>
 
 </svg>
     

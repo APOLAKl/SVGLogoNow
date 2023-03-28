@@ -44,17 +44,17 @@ const mainMenu = () => {
 
 
       if (answers.shape == "circle") {
-        inputShape = new Circle();
+        inputShape = new Circle(answers.border, answers.shapeColor);
         // const circleShape = inputShape.render();
       }
 
       if (answers.shape == "square") {
-        inputShape = new Square();
+        inputShape = new Square(answers.border, answers.shapeColor);
         // const squareShape = inputShape.render();
       }
 
       if (answers.shape == "triangle") {
-        inputShape = new Triangle();
+        inputShape = new Triangle(answers.border, answers.shapeColor);
         // const triangleShape = inputShape.render();
       }
       
