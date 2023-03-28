@@ -5,8 +5,6 @@ const Circle = require("./lib/circle");
 const Square = require("./lib/square");
 const Triangle = require("./lib/triangle");
 
-const selectedShape = [];
-
 const mainMenu = () => {
   return inquirer
     .prompt([
@@ -20,7 +18,7 @@ const mainMenu = () => {
         type: "list",
         name: "textColor",
         message: "What is the color of your text?",
-        choices: ["red", "violet", "blue", "green", "yellow", "orange"],
+        choices: ["red", "white", "violet", "blue", "green", "yellow", "orange"],
       },
       {
         type: "list",
@@ -32,7 +30,7 @@ const mainMenu = () => {
         type: "list",
         name: "shapeColor",
         message: "What is the shape color of your logo?",
-        choices: ["red", "violet", "blue", "green", "yellow", "orange", "transparent", "black"],
+        choices: ["black", "red", "violet", "blue", "green", "yellow", "orange", "transparent", ],
       },
       {
         type: "list",
@@ -42,20 +40,22 @@ const mainMenu = () => {
       },
     ])
     .then((answers) => {
+      var inputShape;
+
 
       if (answers.shape == "circle") {
-        const circle = new Circle();
-        const circleShape = circle.render();
+        inputShape = new Circle();
+        // const circleShape = inputShape.render();
       }
 
       if (answers.shape == "square") {
-        const square = new Square();
-        const squareShape = square.render();
+        inputShape = new Square();
+        // const squareShape = inputShape.render();
       }
 
       if (answers.shape == "triangle") {
-        const triangle = new Triangle();
-        const triangleShape = triangle.render();
+        inputShape = new Triangle();
+        // const triangleShape = inputShape.render();
       }
       
       //  if (answers.shape == "square") {
@@ -81,7 +81,7 @@ width="300" height="200"
 xmlns="http://www.w3.org/2000/svg">
     
 
-${circleShape}
+${inputShape.render()}
 
 
 
@@ -92,7 +92,7 @@ ${circleShape}
     `;
 
     fs.writeFile("./examples/logo.svg", generateSVG, () => {
-      console.log("SVG created!");
+      console.log("Generated logo.svg");
     });
 
 
