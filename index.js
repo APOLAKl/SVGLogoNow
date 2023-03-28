@@ -1,6 +1,9 @@
 const inquirer = require("inquirer");
 const fs = require("fs")
+const Shape = require("./lib/shapes");
 const Circle = require("./lib/circle");
+const Square = require("./lib/square");
+const Triangle = require("./lib/triangle");
 
 const selectedShape = [];
 
@@ -29,7 +32,7 @@ const mainMenu = () => {
         type: "list",
         name: "shapeColor",
         message: "What is the shape color of your logo?",
-        choices: ["red", "violet", "blue", "green", "yellow", "orange", "transparent"],
+        choices: ["red", "violet", "blue", "green", "yellow", "orange", "transparent", "black"],
       },
       {
         type: "list",
@@ -39,15 +42,31 @@ const mainMenu = () => {
       },
     ])
     .then((answers) => {
-      const circle = new Circle();
-      const circleShape = circle.render()
+
+      if (answers.shape == "circle") {
+        const circle = new Circle();
+        const circleShape = circle.render();
+      }
+
+      if (answers.shape == "square") {
+        const square = new Square();
+        const squareShape = square.render();
+      }
+
+      if (answers.shape == "triangle") {
+        const triangle = new Triangle();
+        const triangleShape = triangle.render();
+      }
+      
       //  if (answers.shape == "square") {
       //   squareShape = `<rect x="10" y="10" width="80%" height="80%" stroke="${answers.border}" fill="${answers.shapeColor}" stroke-width="5" />`;
       // }
 
-      if (answers.shape == "circle") {
-        circleShape();
-      }
+      // if (answers.shape == "circle") {
+      //   circleShape();
+      // }
+
+      
 
       // if (answers.shape == "triangle") {
       //   triangleShape = `<polygon points="250,60 100,400 400,400" stroke="${answers.border}" fill="${answers.shapeColor}" stroke-width="5" />`;
