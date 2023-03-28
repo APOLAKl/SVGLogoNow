@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs")
-const Shape = require("./lib/shapes");
+const Circle = require("./lib/circle");
 
 const selectedShape = [];
 
@@ -11,6 +11,7 @@ const mainMenu = () => {
         type: "input",
         name: "text",
         message: "What up to 3 letter text do you like to add to your Logo?",
+        validate: (text) => text.length <= 3 || "Must be within parameters",
       },
       {
         type: "list",
@@ -38,24 +39,21 @@ const mainMenu = () => {
       },
     ])
     .then((answers) => {
-      if (parseInt(answers.text) <= 0 || parseInt(answers.text) >= 4) {
-        console.log("Please put atleast 1-3 text");
-        mainMenu();
-      }
-
-       if (answers.shape == "square") {
-        squareShape = `<rect x="10" y="10" width="80%" height="80%" stroke="${answers.border}" fill="${answers.shapeColor}" stroke-width="5" />`;
-      }
+      const circle = new Circle();
+      const circleShape = circle.render()
+      //  if (answers.shape == "square") {
+      //   squareShape = `<rect x="10" y="10" width="80%" height="80%" stroke="${answers.border}" fill="${answers.shapeColor}" stroke-width="5" />`;
+      // }
 
       if (answers.shape == "circle") {
-        circleShape = `<circle cx="25" cy="75" r="20" stroke="${answers.border}" fill="${answers.shapeColor}" stroke-width="5"/>`;
+        circleShape();
       }
 
-      if (answers.shape == "triangle") {
-        triangleShape = `<polygon points="250,60 100,400 400,400" stroke="${answers.border}" fill="${answers.shapeColor}" stroke-width="5" />`;
-      }
+      // if (answers.shape == "triangle") {
+      //   triangleShape = `<polygon points="250,60 100,400 400,400" stroke="${answers.border}" fill="${answers.shapeColor}" stroke-width="5" />`;
+      // }
 
-      console.log(answers);
+      // console.log(answers);
 
 
       const generateSVG = `
@@ -63,9 +61,11 @@ const mainMenu = () => {
 width="300" height="200"
 xmlns="http://www.w3.org/2000/svg">
     
-${squareShape}
+
 ${circleShape}
-${triangleShape}
+
+
+
 
 <text x="150" y="125" font-size="60" text-anchor="middle" fill="${answers.textColor}">${answers.text}</text>
 
