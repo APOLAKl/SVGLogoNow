@@ -1,6 +1,5 @@
 const inquirer = require("inquirer");
 const fs = require("fs")
-const Shape = require("./lib/shapes");
 const Circle = require("./lib/circle");
 const Square = require("./lib/square");
 const Triangle = require("./lib/triangle");
@@ -45,35 +44,15 @@ const mainMenu = () => {
 
       if (answers.shape == "circle") {
         inputShape = new Circle(answers.border, answers.shapeColor);
-        // const circleShape = inputShape.render();
       }
 
       if (answers.shape == "square") {
         inputShape = new Square(answers.border, answers.shapeColor);
-        // const squareShape = inputShape.render();
       }
 
       if (answers.shape == "triangle") {
         inputShape = new Triangle(answers.border, answers.shapeColor);
-        // const triangleShape = inputShape.render();
       }
-      
-      //  if (answers.shape == "square") {
-      //   squareShape = `<rect x="10" y="10" width="80%" height="80%" stroke="${answers.border}" fill="${answers.shapeColor}" stroke-width="5" />`;
-      // }
-
-      // if (answers.shape == "circle") {
-      //   circleShape();
-      // }
-
-      
-
-      // if (answers.shape == "triangle") {
-      //   triangleShape = `<polygon points="250,60 100,400 400,400" stroke="${answers.border}" fill="${answers.shapeColor}" stroke-width="5" />`;
-      // }
-
-      // console.log(answers);
-
 
       const generateSVG = `
 <svg version="1.1"
@@ -100,70 +79,3 @@ ${inputShape.render()}
 }
 
 mainMenu();
-
-
-// const addSquareLogo = () => {
-//   inquirer
-//     .prompt([
-//       {   
-//         type: "input",
-//         name: "Xaxis",
-//         message: "What is the xAxis of the square?",
-//       },
-//       {
-//         type: "input",
-//         name: "Yaxis",
-//         message: "What is the yAxis of the square?",
-//       },
-//       {
-//         type: "input",
-//         name: "width",
-//         message: "What is the width of the square?",
-//       },
-//       {
-//         type: "input",
-//         name: "height",
-//         message: "What is the height of the square?",
-//       },
-//     ])
-//     .then((answers) => {
-//       const newShape = new Shape(
-//         answers.Xaxis,
-//         answers.Yaxis,
-//         answers.width,
-//         answers.height
-//       );
-//       console.log(answers)
-
-
-//       selectedShape.push(newShape);
-
-//       generateSVG();
-
-//       mainMenu();
-//     });
-// };
-
-// const generateSVG = () => {
-//   console.log(selectedShape);
-
-//   const template = `
-
-//   ${
-//     selectedShape.map(shape => {
-//       return (`
-//         <rect x="10" y="10" width="80%" height="80%" stroke="${shape.answers.getborder()}" fill="${shape.answers.getfill()}" stroke-width="5" />
-//       `)
-//     })
-//   }
-// `
-  
-  
-
-
-  
-// }
-
-// mainMenu();
-
-{/* <circle cx="150" cy="100" r="80" fill="green" /> */}
